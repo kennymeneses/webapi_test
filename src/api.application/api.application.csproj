@@ -11,7 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\" />
+    <Folder Include="Handlers\Authorization\Commands\Login\" />
+    <Folder Include="Handlers\Users\Commands\DeleteUser\" />
+    <Folder Include="Handlers\Users\Commands\UpdateUser\" />
+    <Folder Include="Handlers\Users\Queries\GetUsers\" />
+    <Folder Include="Handlers\Users\Queries\GetUser\" />
   </ItemGroup>
 
 </Project>
