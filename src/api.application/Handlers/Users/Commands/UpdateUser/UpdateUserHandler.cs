@@ -26,6 +26,7 @@ public sealed class UpdateUserHandler(
         return new UserDto()
         {
             Id = user.Id,
+            IdentificationNumber = user.IdentificationNumber,
             FirstName = user.FirstName,
             LastName = user.LastName,
             Email = user.Email,

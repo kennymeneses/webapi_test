@@ -3,14 +3,16 @@ using api.application.DTOs;
 using api.application.Handlers.Abstractions;
 using api.application.Handlers.Authorization.Commands.Login;
 using api.application.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.webapi.Controllers;
 
 public class AuthorizationController(
     ILoginHandler loginHandler
-    ): ControllerBase
+    ): BaseController
 {
+    [AllowAnonymous]
     [HttpPost]
     [ProducesResponseType(typeof(UserLoggedDto), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using api.application.Configurations;
 using api.application.DTOs;
 using api.application.Handlers.Abstractions;
 using api.application.Models;
@@ -25,9 +26,11 @@ public class LoginHandler(
             throw new KeyNotFoundException($"User with email {command.Email} does not exist");
         }
         
-        User user = await repository.FirstOrDefaultAsync<User>(user => user.Email == command.Email, cancellationToken);
+        //User user = await repository.FirstOrDefaultAsync<User>(user => user.Email == command.Email, cancellationToken);
 
-        if (user.Email != command.Email || user.UserPassword.Password != command.Password)
+        User user = await repository.GetUserByEmail(command.Email, cancellationToken);
+        
+        if (user.Email != command.Email || user.UserPassword.Password != command.Password.ToHash())
         {
             throw new UnauthorizedAccessException($"User with email {command.Email} does not exist");
         }

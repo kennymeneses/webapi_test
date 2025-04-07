@@ -1,3 +1,4 @@
+using api.application.Configurations;
 using api.application.DTOs;
 using api.application.Handlers.Abstractions;
 using api.dataAccess.Configurations.Abstractions;
@@ -16,7 +17,7 @@ public class UserCreationHandler(
         User newUser = new()
         {
             Id = Guid.NewGuid(),
-            IdentificationNumber = command.FirstName,
+            IdentificationNumber = command.IdentificationNumber,
             FirstName = command.FirstName,
             LastName = command.LastName,
             Email = command.Email,
@@ -32,7 +33,7 @@ public class UserCreationHandler(
         {
             Id = Guid.NewGuid(),
             UserId = newUser.Id,
-            Password = command.Password,
+            Password = command.Password.ToHash(),
             CreatedTime = DateTimeOffset.UtcNow,
             Deleted = false
         };
@@ -46,11 +47,13 @@ public class UserCreationHandler(
         UserDto userDto = new()
         {
             Id = newUser.Id,
+            IdentificationNumber = newUser.IdentificationNumber,
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
             Email = newUser.Email,
             Gender = newUser.Gender,
             Type = newUser.Type,
+            BirthDate = newUser.BirthDate
         };
         
         return userDto;

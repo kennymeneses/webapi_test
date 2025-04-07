@@ -23,6 +23,7 @@ public class GetUsersPaginatedHandler(
                 LastName = users[i].LastName,
                 Gender = users[i].Gender,
                 Type = users[i].Type,
+                BirthDate = users[i].BirthDate
             };
         }
 
