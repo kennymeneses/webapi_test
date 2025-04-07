@@ -36,5 +36,10 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .HasColumnName("last_modified_time");
         
         builder.Property(user => user.Deleted).HasColumnName("deleted").HasDefaultValue(false);
+        
+        builder.HasOne(user => user.UserPassword)
+            .WithOne(userPassword => userPassword.User)
+            .HasForeignKey<UserPassword>(user => user.UserId)
+            .HasConstraintName("FK_Users_Password_Users");
     }
 }

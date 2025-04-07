@@ -11,4 +11,6 @@ public class User : BaseEntity
     public Gender Gender { get; set; }
     public UserType Type { get; set; }
     public DateOnly BirthDate { get; set; }
+    
+    public virtual UserPassword UserPassword { get; set; }
 }

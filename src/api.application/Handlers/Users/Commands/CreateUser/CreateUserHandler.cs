@@ -5,7 +5,10 @@ using api.dataAccess.Repositories.Abstractions;
 
 namespace api.application.Handlers.Users.Commands.CreateUser;
 
-public class CreateUserHandler(IUserRepository repository, IUnitOfWork unitOfWork)
+public class CreateUserHandler(
+    IUserRepository repository,
+    IUserPasswordRepository passwordRepository,
+    IUnitOfWork unitOfWork)
 {
     public async ValueTask<UserDto> Handler(CreateUserCommand command, CancellationToken cancellationToken)
     {
@@ -22,8 +25,18 @@ public class CreateUserHandler(IUserRepository repository, IUnitOfWork unitOfWor
             BirthDate = command.BirthDate,
             Deleted = false
         };
-
         repository.CreateAsync(newUser);
+        
+        UserPassword userPassword = new()
+        {
+            Id = Guid.NewGuid(),
+            UserId = newUser.Id,
+            Password = command.Password,
+            CreatedTime = DateTimeOffset.UtcNow,
+            Deleted = false
+        };
+        passwordRepository.CreateAsync(userPassword);
+         
         await unitOfWork.CommitChangesAsync(cancellationToken);
         
         //dbchallenge
