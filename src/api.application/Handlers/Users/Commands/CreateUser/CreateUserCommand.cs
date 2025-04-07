@@ -4,6 +4,7 @@ namespace api.application.Handlers.Users.Commands.CreateUser;
 
 public class CreateUserCommand
 {
+    public string IdentificationNumber { get; set; }
     public string FirstName { get; init; }
     public string LastName { get; init; }
     public string Email { get; init; }

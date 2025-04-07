@@ -1,16 +1,17 @@
 using api.application.DTOs;
+using api.application.Handlers.Abstractions;
 using api.dataAccess.Configurations.Abstractions;
 using api.dataAccess.Entities;
 using api.dataAccess.Repositories.Abstractions;
 
 namespace api.application.Handlers.Users.Commands.CreateUser;
 
-public class CreateUserHandler(
+public class UserCreationHandler(
     IUserRepository repository,
     IUserPasswordRepository passwordRepository,
-    IUnitOfWork unitOfWork)
+    IUnitOfWork unitOfWork) : IUserCreationHandler
 {
-    public async ValueTask<UserDto> Handler(CreateUserCommand command, CancellationToken cancellationToken)
+    public async Task<UserDto> Handler(CreateUserCommand command, CancellationToken cancellationToken)
     {
         User newUser = new()
         {
