@@ -9,5 +9,5 @@ public class CreateUserCommand
     public string Email { get; init; }
     public Gender Gender { get; init; }
     public UserType Type { get; init; }
-    public int Age { get; init; }
+    public DateOnly BirthDate { get; set; }
 }

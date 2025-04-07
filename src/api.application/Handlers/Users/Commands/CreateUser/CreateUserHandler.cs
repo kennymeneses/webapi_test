@@ -12,13 +12,15 @@ public class CreateUserHandler(IUserRepository repository, IUnitOfWork unitOfWor
         User newUser = new()
         {
             Id = Guid.NewGuid(),
+            IdentificationNumber = command.FirstName,
             FirstName = command.FirstName,
             LastName = command.LastName,
             Email = command.Email,
             Gender = command.Gender,
             Type = command.Type,
             CreatedTime = DateTimeOffset.UtcNow,
-            Deleted = false,
+            BirthDate = command.BirthDate,
+            Deleted = false
         };
 
         repository.CreateAsync(newUser);
