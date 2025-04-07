@@ -1,4 +1,5 @@
 using api.application.Handlers.Abstractions;
+using api.application.Models.Responses;
 using api.dataAccess.Configurations.Abstractions;
 using api.dataAccess.Entities;
 using api.dataAccess.Repositories.Abstractions;
@@ -10,7 +11,7 @@ public class DeleteUserHandler(
     IUserPasswordRepository userPasswordRepository,
     IUnitOfWork unitOfWork) : IDeleteUserHandler
 {
-    public async Task<Guid> Handler(DeleteUserCommand command, CancellationToken cancellationToken)
+    public async Task<UserDeletedResponse> Handler(DeleteUserCommand command, CancellationToken cancellationToken)
     {
         User? user = await repository.FirstOrDefaultAsync<User>(user => user.Id == command.UserId, cancellationToken);
         
@@ -26,6 +27,9 @@ public class DeleteUserHandler(
         
         await unitOfWork.CommitChangesAsync(cancellationToken);
         
-        return user.Id;
+        return new UserDeletedResponse()
+        {
+            UserId = user.Id
+        };
     }
 }
