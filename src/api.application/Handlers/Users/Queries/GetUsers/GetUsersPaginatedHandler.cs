@@ -9,7 +9,7 @@ public class GetUsersPaginatedHandler(
 {
     public async Task<PaginatedUsersDto> Handler(GetUsersPaginatedQuery query, CancellationToken cancellationToken)
     {
-        var users = await repository.ListAsync(user => user.Deleted == false, cancellationToken);
+        var users = await repository.ListAsync(cancellationToken);
         
         UserDto[] userDtos = new UserDto[users.Count];
 

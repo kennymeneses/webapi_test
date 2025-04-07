@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Users\Commands\DeleteUser\" />
     <Folder Include="Handlers\Users\Commands\UpdateUser\" />
-    <Folder Include="Handlers\Users\Queries\GetUser\" />
   </ItemGroup>
 
 </Project>
