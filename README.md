@@ -1,4 +1,4 @@
-# Web Api Challenge "TechAndSolve"
+# Web Api Challenge "TechAndSolve" by Kenny Meneses
 
 This guide provides step-by-step instructions for setting up and running the Web API Challenge application locally.
 
@@ -11,5 +11,12 @@ Before proceeding, ensure that the following prerequisites are met:
 - **Entity Framework Core CLI Tools:** Ensure you have installed entity framework core CLI tools in your machine. This can be done with ```dotnet tool install --global dotnet-ef```
 
 ## Running the Project Locally
-To run the project in **Dev** environment:
+To run the project in **Dev** environment use this url: http://localhost:5279/swagger/index.html
+You can use this credentials in postman to get credentials:
+```
+{
+"email": "kenny@gmail.com",
+"password": "1234"
+}
+```
 

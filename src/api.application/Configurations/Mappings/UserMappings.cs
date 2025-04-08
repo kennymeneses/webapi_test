@@ -16,8 +16,6 @@ public static class UserMappings
         };
     }
     
-    
-    
     public static CreateUserCommand ToCommand(this UserCreationRequest request)
     {
         return new CreateUserCommand()
